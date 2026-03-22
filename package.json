@@ -1,0 +1,27 @@
+{
+  "name": "should-i-trade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\" --names \"API,UI\" --prefix-colors \"cyan,green\"",
+    "server": "node server.js",
+    "client": "cd client && npm run dev",
+    "start": "node server.js",
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "node-cron": "^4.2.1",
+    "yahoo-finance2": "^3.13.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
