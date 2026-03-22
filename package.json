@@ -16,7 +16,7 @@
   "license": "ISC",
   "type": "commonjs",
   "engines": {
-    "node": ">=20.19.0"
+    "node": "20.x"
   },
   "dependencies": {
     "cors": "^2.8.6",
