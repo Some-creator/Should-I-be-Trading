@@ -154,9 +154,20 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', cacheAge: Math.round((Date.now() - cache.lastFetch) / 1000) });
 });
 
+const path = require('path');
+
+// ── Serve Static Frontend (Production) ─────────────────────────────────────
+app.use(express.static(path.join(__dirname, 'client/dist')));
+
+// Catch-all route to serve the React app for any unmatched routes
+app.get(/^\/(.*)$/, (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+});
+
 // ── Start Server ───────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n🚀 Should I Trade? API running at http://localhost:${PORT}`);
+const port = process.env.PORT || PORT;
+app.listen(port, '0.0.0.0', () => {
+  console.log(`\n🚀 Should I Trade? API running at http://localhost:${port}`);
   console.log(`   Endpoints: /api/market  /api/ticker  /api/health\n`);
   // Pre-warm cache
   getOrFetchData().then(() => console.log('[Cache] Pre-warmed successfully')).catch(console.error);
